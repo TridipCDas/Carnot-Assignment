@@ -80,13 +80,22 @@ WSGI_APPLICATION = 'carnot_task.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'dd69ph900jqm0q',
+        'HOST' : 'ec2-54-157-16-196.compute-1.amazonaws.com',
+        'PORT' : 5432,
+        'USER' : 'knvstcpjeyujtu',
+        'PASSWORD' : 'd6aa828682de9b450b5d697a198a64fb7bc4f639ff8c3f372b6ab27435f4c131'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
