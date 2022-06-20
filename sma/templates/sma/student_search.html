@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>STUDENT DETAIL VIEW</title>
+  <style>
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      width: 75%;
+      margin: 0 auto;
+    }
+    body {
+
+      margin: 0;
+      padding: 0;
+
+    }
+
+    h3 {
+      margin: 0 auto;
+      display: block;
+      width: 75%;
+      margin-bottom: 1.5rem;
+      margin-top: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h3>STUDENT SEARCH PAGE</h3>
+  <div>
+    <form action="/students/search/" method="post">
+    {% csrf_token %}
+    {{ form }}
+      <input type="submit" value="Search">
+   </form>
+  </div>
+</body>
+</html>

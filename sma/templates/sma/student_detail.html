@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>STUDENT DETAIL VIEW</title>
+<style>
+  body {
+    padding: 0;
+    margin: 1rem 0;
+  }
+  p:nth-child(odd) {
+    background-color: #f0f0f0;
+  }
+  p:nth-child(even) {
+    background-color: #b2b2b2;
+  }
+  p {
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    width: 80%;
+  }
+</style>
+</head>
+<body>
+    {% if student_exists %}
+        <p> STUDENT FIRST NAME::  {{student_details.first_name}}</p>
+        <p> STUDENT LAST NAME::  {{student_details.last_name}}</p>
+        <p> STUDENT EMAIL::  {{student_details.email}}</p>
+        <p> STUDENT SCHOOL::  {{student_details.school}}</p>
+        <p> STUDENT GENDER::  {{student_details.gender}}</p>
+        <p> BOOKS TAKEN BY STUDENT ::</p>
+            {% for b in student_details.read_books %}
+              <p> BOOK NAME:: {{b.read_book_name}}        PAGES READ :: {{b.pages_read}}</p>
+            {% endfor %}
+    {% else %}
+      <p>No student detail found </p>
+
+    {% endif %}
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        body {
+            margin: 0% 20%;
+        }
+    </style>
+    <script>
+        window.addEventListener('load',() => {
+            const addBookBtn = document.querySelector('#add-book-btn');
+            addBookBtn.addEventListener('click',e => {
+                e.preventDefault();
+                const bookCount = [...document.querySelectorAll('[data-book-field]')].length;
+                const form = document.forms["create-form"];
+                const inputField = document.createElement('input');
+                inputField.setAttribute('type','text');
+                inputField.setAttribute('name',`book-${bookCount+1}`);
+                form.appendChild(inputField);
+                let dataListTemplate = document.querySelector('#option-list')
+                console.log(dataListTemplate)
+                dataListTemplate = dataListTemplate.querySelector('datalist')
+                console.log(dataListTemplate)
+                const dataListForInput = dataListTemplate.cloneNode();
+                const options = [...dataListTemplate.querySelectorAll('option')];
+                options.forEach(option => {
+                    const newOption = document.createElement('option');
+                    newOption.setAttribute('value',option.value);
+                    dataListForInput.appendChild(newOption);
+                });
+                inputField.setAttribute('list',`book-${bookCount+1}-options`);
+                inputField.setAttribute('name',`book-${bookCount+1}`)
+                inputField.setAttribute('data-book-field',`book-${bookCount+1}`)
+                dataListForInput.setAttribute('id',`book-${bookCount+1}-options`);
+                
+                form.appendChild(dataListForInput);
+
+            })
+        })
+   </script>
+</head>
+<body>
+    <form name="create-form" action="/students/create/" method="post" onsubmit="">
+        {% csrf_token %}
+        {{form}}
+        <button id="add-book-btn">Add Book</button>
+        <div id="option-list">
+            <datalist>
+            {% for book in books %}
+                <option value="{{book}}">
+            {% endfor %}
+            </datalist>
+        </div>
+        <input type="submit" value="submit"/>
+    </form>
+
+</body>
+</html>
